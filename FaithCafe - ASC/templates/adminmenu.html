@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FaithCafe - Admin Menu</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">FaithCafe</div>
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="adminmenu.html">Menu</a></li>
+                    <li><a href="manage_users.html">Manage Users</a></li>
+                </ul>
+            </nav>
+            <button id="theme-toggle" class="theme-toggle">🌙</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1 class="page-title">Our Menu</h1>
+            
+            <!-- Hot Coffees Section -->
+            <section class="menu-category">
+                <div class="category-header">
+                    <h2 class="category-title">Hot Coffees</h2>
+                </div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/cappuccino.jpg" alt="Cappuccino">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Cappuccino</div>
+                            <div class="item-price">₱49 (Regular) • ₱59 (Large)</div>
+                            <button class="btn add-to-cart" onclick="showSizeModal('Iced Vanilla Latte', 49, 59)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/cafe latte.jpg" alt="Cafe Late">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Cafe Late </div>
+                            <div class="item-price">₱49 (Regular) • ₱59 (Large)</div>
+                            <button class="btn add-to-cart" onclick="showSizeModal('Iced Vanilla Latte', 49, 59)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/red velvet latte.jpg" alt="Red Velvet Latte">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Red Velvet Latte</div>
+                            <div class="item-price">₱49 (Regular) • ₱59 (Large)</div>
+                            <button class="btn add-to-cart" onclick="showSizeModal('Iced Vanilla Latte', 49, 59)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/flat white.jpg" alt="Flat White">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Flat White</div>
+                            <div class="item-price">₱49 (Regular) • ₱59 (Large)</div>
+                            <button class="btn add-to-cart" onclick="showSizeModal('Iced Vanilla Latte', 49, 59)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/cinnamon coffee.jpg" alt="Cinnamon Coffee">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Cinnamon Coffee</div>
+                            <div class="item-price">₱49 (Regular) • ₱59 (Large)</div>
+                            <button class="btn add-to-cart" onclick="showSizeModal('Iced Vanilla Latte', 49, 59)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/espresso.jpg" alt="Espresso">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Espresso</div>
+                            <div class="item-price">₱49 (Regular) • ₱59 (Large)</div>
+                            <button class="btn add-to-cart" onclick="showSizeModal('Iced Vanilla Latte', 49, 59)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/vanilla latte.jpg" alt="Vanilla Latte">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Vanilla Latte</div>
+                            <div class="item-price">₱49 (Regular) • ₱59 (Large)</div>
+                            <button class="btn add-to-cart" onclick="showSizeModal('Iced Vanilla Latte', 49, 59)">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Iced Coffees Section -->
+            <section class="menu-category">
+                <div class="category-header">
+                    <h2 class="category-title">Iced Coffees</h2>
+                </div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/iced coffee.jpg" alt="Iced Coffee">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Iced Coffee</div>
+                            <div class="item-price">₱49 (Regular) • ₱59 (Large)</div>
+                            <button class="btn add-to-cart" onclick="showSizeModal('Iced Vanilla Latte', 49, 59)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/iced mocha latte.jpg" alt="Iced Mocha Latte">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Iced Mocha Latte</div>
+                            <div class="item-price">₱49 (Regular) • ₱59 (Large)</div>
+                            <button class="btn add-to-cart" onclick="showSizeModal('Iced Vanilla Latte', 49, 59)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/cold brew.jpg" alt="Cold Brew">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Cold Brew</div>
+                            <div class="item-price">₱49 (Regular) • ₱59 (Large)</div>
+                            <button class="btn add-to-cart" onclick="showSizeModal('Iced Vanilla Latte', 49, 59)">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Milk Tea Section -->
+            <section class="menu-category">
+                <div class="category-header">
+                    <h2 class="category-title">Milk Tea</h2>
+                </div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/wintermelon.jpg" alt="Wintermelon">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Wintermelon</div>
+                            <div class="item-price">₱49 (Regular) • ₱59 (Large)</div>
+                            <button class="btn add-to-cart" onclick="showSizeModal('Wintermelon', 49, 59)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/cookies and cream.jpg" alt="Cookies and Cream">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Cookies and Cream</div>
+                            <div class="item-price">₱49 (Regular) • ₱59 (Large)</div>
+                            <button class="btn add-to-cart" onclick="showSizeModal('Cookies and Cream', 49, 59)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/mango.jpg" alt="Mango">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Mango</div>
+                            <div class="item-price">₱49 (Regular) • ₱59 (Large)</div>
+                            <button class="btn add-to-cart" onclick="showSizeModal('Mango', 49, 59)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/strawberry.jpg" alt="Strawberry">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Strawberry</div>
+                            <div class="item-price">₱49 (Regular) • ₱59 (Large)</div>
+                            <button class="btn add-to-cart" onclick="showSizeModal('Strawberry', 49, 59)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/matcha.jpg" alt="Matcha">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Matcha</div>
+                            <div class="item-price">₱49 (Regular) • ₱59 (Large)</div>
+                            <button class="btn add-to-cart" onclick="showSizeModal('Matcha', 49, 59)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/chocolate.jpg" alt="Chocolate">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Chocolate</div>
+                            <div class="item-price">₱49 (Regular) • ₱59 (Large)</div>
+                            <button class="btn add-to-cart" onclick="showSizeModal('Chocolate', 49, 59)">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Snacks Section -->
+            <section class="menu-category">
+                <div class="category-header">
+                    <h2 class="category-title">Snacks</h2>
+                </div>
+                <div class="menu-grid">
+                    <!-- Single Price Items -->
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/Chocolate Chip Cookie.jpg" alt="Chocolate Chip Cookie">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Chocolate Chip Cookie</div>
+                            <div class="item-price">₱7 each</div>
+                            <button class="btn add-to-cart" onclick="addToCart('Chocolate Chip Cookie', 7)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/Croissant.jpg" alt="Croissant">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Croissant</div>
+                            <div class="item-price">₱35</div>
+                            <button class="btn add-to-cart" onclick="addToCart('Croissant', 35)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/ham sandwich.jpg" alt="Ham Sandwich">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Ham Sandwich</div>
+                            <div class="item-price">₱40</div>
+                            <button class="btn add-to-cart" onclick="addToCart('Ham Sandwich', 40)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/Garlic Bread.jpg" alt="Garlic Bread">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Garlic Bread</div>
+                            <div class="item-price">₱50</div>
+                            <button class="btn add-to-cart" onclick="addToCart('Garlic Bread', 50)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/Fries.jpg" alt="Fries">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Fries</div>
+                            <div class="item-price">₱20 (Small) • ₱49 (Large)</div>
+                            <button class="btn add-to-cart" onclick="showSizeModal('Fries', 20, 49)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/Burger.jpg" alt="Burger">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Burger</div>
+                            <div class="item-price">₱35 • ₱38 (with Cheese)</div>
+                            <button class="btn add-to-cart" onclick="showBurgerModal()">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/Cinnamon Roll.jpg" alt="Cinnamon Roll">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Cinnamon Roll</div>
+                            <div class="item-price">₱45</div>
+                            <button class="btn add-to-cart" onclick="addToCart('Cinnamon Roll', 45)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/Banana Bread.jpg" alt="Banana Bread">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Banana Bread</div>
+                            <div class="item-price">₱40</div>
+                            <button class="btn add-to-cart" onclick="addToCart('Banana Bread', 40)">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Size Selection Modal -->
+    <div id="sizeModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3 id="modal-item-name">Select Size</h3>
+            <div class="size-options">
+                <div class="size-option" data-size="Regular">
+                    <input type="radio" id="size-regular" name="size" value="regular" checked>
+                    <label for="size-regular">Regular - ₱<span id="regular-price">49</span></label>
+                </div>
+                <div class="size-option" data-size="Large">
+                    <input type="radio" id="size-large" name="size" value="large">
+                    <label for="size-large">Large - ₱<span id="large-price">59</span></label>
+                </div>
+            </div>
+            <div class="quantity-selector">
+                <label for="quantity">Quantity:</label>
+                <div class="quantity-controls">
+                    <button type="button" class="quantity-btn" onclick="decreaseQuantity()">-</button>
+                    <input type="number" id="quantity" value="1" min="1" max="10">
+                    <button type="button" class="quantity-btn" onclick="increaseQuantity()">+</button>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="addToCartWithSize()">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Burger Options Modal -->
+    <div id="burgerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Burger Options</h3>
+            <div class="burger-options">
+                <div class="burger-option">
+                    <input type="radio" id="burger-plain" name="burger-type" value="plain" checked>
+                    <label for="burger-plain">Plain Burger - ₱35</label>
+                </div>
+                <div class="burger-option">
+                    <input type="radio" id="burger-cheese" name="burger-type" value="cheese">
+                    <label for="burger-cheese">Burger with Cheese - ₱38</label>
+                </div>
+            </div>
+            <div class="quantity-selector">
+                <label for="burger-quantity">Quantity:</label>
+                <div class="quantity-controls">
+                    <button type="button" class="quantity-btn" onclick="decreaseBurgerQuantity()">-</button>
+                    <input type="number" id="burger-quantity" value="1" min="1" max="10">
+                    <button type="button" class="quantity-btn" onclick="increaseBurgerQuantity()">+</button>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn btn-secondary" onclick="closeBurgerModal()">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="addBurgerToCart()">Add to Cart</button>
+            </div>
+        </div>
+    </div>    
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2025 FaithCafe. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../static/js/script.js"></script>
+    <script>
+        // Modal functionality
+        let currentItem = null;
+        let currentRegularPrice = 0;
+        let currentLargePrice = 0;
+
+        function showSizeModal(itemName, regularPrice, largePrice) {
+            currentItem = itemName;
+            currentRegularPrice = regularPrice;
+            currentLargePrice = largePrice;
+            
+            document.getElementById('modal-item-name').textContent = itemName;
+            document.getElementById('regular-price').textContent = regularPrice;
+            document.getElementById('large-price').textContent = largePrice;
+            document.getElementById('quantity').value = 1;
+            
+            document.getElementById('sizeModal').style.display = 'block';
+        }
+
+        function showBurgerModal() {
+            document.getElementById('burgerModal').style.display = 'block';
+            document.getElementById('burger-quantity').value = 1;
+        }
+
+        function closeModal() {
+            document.getElementById('sizeModal').style.display = 'none';
+        }
+
+        function closeBurgerModal() {
+            document.getElementById('burgerModal').style.display = 'none';
+        }
+
+        function increaseQuantity() {
+            const quantityInput = document.getElementById('quantity');
+            if (quantityInput.value < 10) {
+                quantityInput.value = parseInt(quantityInput.value) + 1;
+            }
+        }
+
+        function decreaseQuantity() {
+            const quantityInput = document.getElementById('quantity');
+            if (quantityInput.value > 1) {
+                quantityInput.value = parseInt(quantityInput.value) - 1;
+            }
+        }
+
+        function increaseBurgerQuantity() {
+            const quantityInput = document.getElementById('burger-quantity');
+            if (quantityInput.value < 10) {
+                quantityInput.value = parseInt(quantityInput.value) + 1;
+            }
+        }
+
+        function decreaseBurgerQuantity() {
+            const quantityInput = document.getElementById('burger-quantity');
+            if (quantityInput.value > 1) {
+                quantityInput.value = parseInt(quantityInput.value) - 1;
+            }
+        }
+
+        function addToCartWithSize() {
+            const selectedSize = document.querySelector('input[name="size"]:checked').value;
+            const quantity = parseInt(document.getElementById('quantity').value);
+            const price = selectedSize === 'regular' ? currentRegularPrice : currentLargePrice;
+            const itemName = `${currentItem} (${selectedSize.charAt(0).toUpperCase() + selectedSize.slice(1)})`;
+            
+            addToCart(itemName, price, quantity);
+            closeModal();
+        }
+
+        function addBurgerToCart() {
+            const selectedType = document.querySelector('input[name="burger-type"]:checked').value;
+            const quantity = parseInt(document.getElementById('burger-quantity').value);
+            const price = selectedType === 'plain' ? 35 : 38;
+            const itemName = selectedType === 'plain' ? 'Burger' : 'Burger with Cheese';
+            
+            addToCart(itemName, price, quantity);
+            closeBurgerModal();
+        }
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            const sizeModal = document.getElementById('sizeModal');
+            const burgerModal = document.getElementById('burgerModal');
+            
+            if (event.target === sizeModal) {
+                closeModal();
+            }
+            if (event.target === burgerModal) {
+                closeBurgerModal();
+            }
+        }
+
+        // Close modals with escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+                closeBurgerModal();
+            }
+        });
+        
+        // Show inline Edit buttons for admins (links to admin editor)
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                if (typeof isRole === 'function' && isRole('admin')) {
+                    document.querySelectorAll('.menu-item').forEach(function(item, idx) {
+                        const details = item.querySelector('.item-details');
+                        if (!details) return;
+
+                        const nameEl = item.querySelector('.item-name');
+                        const itemName = nameEl ? nameEl.textContent.trim() : ('item' + idx);
+
+                        // Remove any Add to Cart buttons for admin view
+                        const addBtn = item.querySelector('.add-to-cart');
+                        if (addBtn) addBtn.remove();
+
+                        // Avoid duplicating admin controls
+                        if (details.querySelector('.admin-controls')) return;
+
+                        const controls = document.createElement('div');
+                        controls.className = 'admin-controls';
+                        controls.style.display = 'inline-block';
+
+                        // Edit button
+                        const editBtn = document.createElement('button');
+                        editBtn.className = 'btn admin-edit-btn';
+                        editBtn.textContent = 'Edit';
+                        editBtn.style.marginLeft = '8px';
+                        editBtn.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            openEditorByName(itemName);
+                        });
+                        controls.appendChild(editBtn);
+
+                        // Delete button
+                        const deleteBtn = document.createElement('button');
+                        deleteBtn.className = 'btn admin-delete-btn';
+                        deleteBtn.textContent = 'Delete';
+                        deleteBtn.style.marginLeft = '8px';
+                        deleteBtn.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            if (!confirm('Delete this menu item?')) return;
+                            try {
+                                const menu = getMenuItems();
+                                const idx = menu.findIndex(m => m.name === itemName);
+                                if (idx === -1) return showNotification('Menu item not found', 'error');
+                                menu.splice(idx,1);
+                                saveMenuItems(menu);
+                                showNotification('Menu item deleted', 'success');
+                                // remove DOM element
+                                if (item && item.parentNode) item.parentNode.removeChild(item);
+                            } catch (err) {
+                                console.error('Failed to delete menu item', err);
+                                showNotification('Failed to delete item', 'error');
+                            }
+                        });
+                        controls.appendChild(deleteBtn);
+
+                        details.appendChild(controls);
+                    });
+                }
+            } catch (e) {
+                // fail silently but log for debugging
+                console.error(e);
+            }
+        });
+
+        /* --- Editor Modal for Admin (edit without leaving page) --- */
+        // Modal markup will be injected at the end of body for simplicity
+        function createEditorModal() {
+            if (document.getElementById('admin-editor-modal')) return;
+            const modal = document.createElement('div');
+            modal.id = 'admin-editor-modal';
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <span class="close-modal" id="editor-close">&times;</span>
+                    <h3>Edit Menu Item</h3>
+                    <div style="max-width:600px;">
+                            <label>Name</label>
+                            <input id="editor-name" placeholder="Name" /><br/>
+                            <label>Price</label>
+                            <input id="editor-price" placeholder="Price" type="number" step="0.01" /><br/>
+                            <label>Image URL (or upload)</label>
+                            <input id="editor-image" placeholder="Image URL" /><br/>
+                            <div style="margin-top:8px;">
+                                <input type="file" id="editor-image-file" accept="image/*" />
+                            </div>
+                            <div style="margin-top:8px;">
+                                <img id="editor-image-preview" src="" alt="Preview" style="max-width:200px; display:none; border:1px solid #ddd; padding:4px;" />
+                            </div>
+                        <div style="margin-top:12px;">
+                            <button class="btn" id="editor-save">Save</button>
+                            <button class="btn btn-secondary" id="editor-cancel">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+
+            // Wire events
+            document.getElementById('editor-close').addEventListener('click', closeEditorModal);
+            document.getElementById('editor-cancel').addEventListener('click', closeEditorModal);
+            document.getElementById('editor-save').addEventListener('click', saveEditorChanges);
+        }
+
+        let _editorIndex = -1;
+
+        function openEditorByName(name) {
+            createEditorModal();
+            const menu = getMenuItems();
+            const idx = menu.findIndex(m => m.name === name);
+            if (idx !== -1) openEditorByIndex(idx);
+            else {
+                _editorIndex = -1;
+                document.getElementById('editor-name').value = name || '';
+                document.getElementById('editor-price').value = '';
+                document.getElementById('editor-image').value = '';
+                document.getElementById('admin-editor-modal').style.display = 'block';
+            }
+        }
+
+        function openEditorByIndex(idx) {
+            createEditorModal();
+            const menu = getMenuItems();
+            const item = menu[idx];
+            if (!item) return showNotification('Menu item not found', 'error');
+            _editorIndex = idx;
+            document.getElementById('editor-name').value = item.name || '';
+            document.getElementById('editor-price').value = item.price || '';
+            document.getElementById('editor-image').value = item.image || '';
+            const preview = document.getElementById('editor-image-preview');
+            if (item.image) {
+                preview.src = item.image;
+                preview.style.display = 'block';
+            } else {
+                preview.src = '';
+                preview.style.display = 'none';
+            }
+            document.getElementById('admin-editor-modal').style.display = 'block';
+        }
+
+        function closeEditorModal() {
+            const modal = document.getElementById('admin-editor-modal');
+            if (modal) modal.style.display = 'none';
+            _editorIndex = -1;
+        }
+
+        function saveEditorChanges() {
+            const name = document.getElementById('editor-name').value.trim();
+            const price = parseFloat(document.getElementById('editor-price').value || '0');
+            const urlImage = document.getElementById('editor-image').value.trim();
+            if (!name || isNaN(price)) return showNotification('Provide name and price', 'error');
+
+            const fileInput = document.getElementById('editor-image-file');
+            // If a file is selected, read it as Data URL and save after reading
+            if (fileInput && fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    const dataUrl = evt.target.result;
+                    persistMenuItem(name, price, dataUrl);
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                // No file, use the URL field (may be empty)
+                persistMenuItem(name, price, urlImage || '');
+            }
+        }
+
+        function persistMenuItem(name, price, image) {
+            const menu = getMenuItems();
+            const item = { name, price, image };
+            if (_editorIndex >= 0) {
+                menu[_editorIndex] = item;
+            } else {
+                menu.push(item);
+            }
+            saveMenuItems(menu);
+            showNotification('Menu saved', 'success');
+            closeEditorModal();
+            // Re-render or simply reload to simplify DOM updates
+            setTimeout(() => window.location.reload(), 120);
+        }
+
+        // image file preview
+        document.addEventListener('change', function(e) {
+            if (e.target && e.target.id === 'editor-image-file') {
+                const file = e.target.files && e.target.files[0];
+                const preview = document.getElementById('editor-image-preview');
+                if (!file) {
+                    preview.src = '';
+                    preview.style.display = 'none';
+                    return;
+                }
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    preview.src = evt.target.result;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>
