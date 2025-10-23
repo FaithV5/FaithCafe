@@ -1,27 +1,29 @@
 // server.js
 import express from "express";
 import cors from "cors";
+import dotenv from "dotenv";
 import pkg from "pg";
 const { Pool } = pkg;
+
+dotenv.config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(express.static("static")); // serve your frontend
 
-// 🟢 Connect to Neon PostgreSQL
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: { rejectUnauthorized: false }
 });
 
-// 🧾 Route: Get all items from your table
+// 🧾 Fetch all menu items
 app.get("/api/menu", async (req, res) => {
   try {
-    // ✅ FIX: Missing 'FROM' keyword in SQL query
-    const result = await pool.query("SELECT * FROM FaithCafedb ORDER BY id ASC");
+    const result = await pool.query("SELECT * FROM faithcafedb ORDER BY id ASC");
     res.json(result.rows);
   } catch (err) {
-    console.error("Error fetching menu:", err);
+    console.error("❌ Error fetching menu:", err);
     res.status(500).send("Server Error");
   }
 });
