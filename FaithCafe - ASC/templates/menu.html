@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FaithCafe - Menu</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">FaithCafe</div>
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
+                    <li><a href="status.html">Delivery Status</a></li>
+                </ul>
+            </nav>
+            <button id="theme-toggle" class="theme-toggle">🌙</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1 class="page-title">Our Menu</h1>
+            
+            <!-- Hot Coffees Section -->
+            <section class="menu-category">
+                <div class="category-header">
+                    <h2 class="category-title">Hot Coffees</h2>
+                </div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/cappuccino.jpg" alt="Cappuccino">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Cappuccino</div>
+                            <div class="item-price">₱49 (Regular) • ₱59 (Large)</div>
+                            <button class="btn add-to-cart" onclick="showSizeModal('Iced Vanilla Latte', 49, 59)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/cafe latte.jpg" alt="Cafe Late">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Cafe Late </div>
+                            <div class="item-price">₱49 (Regular) • ₱59 (Large)</div>
+                            <button class="btn add-to-cart" onclick="showSizeModal('Iced Vanilla Latte', 49, 59)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/red velvet latte.jpg" alt="Red Velvet Latte">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Red Velvet Latte</div>
+                            <div class="item-price">₱49 (Regular) • ₱59 (Large)</div>
+                            <button class="btn add-to-cart" onclick="showSizeModal('Iced Vanilla Latte', 49, 59)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/flat white.jpg" alt="Flat White">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Flat White</div>
+                            <div class="item-price">₱49 (Regular) • ₱59 (Large)</div>
+                            <button class="btn add-to-cart" onclick="showSizeModal('Iced Vanilla Latte', 49, 59)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/cinnamon coffee.jpg" alt="Cinnamon Coffee">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Cinnamon Coffee</div>
+                            <div class="item-price">₱49 (Regular) • ₱59 (Large)</div>
+                            <button class="btn add-to-cart" onclick="showSizeModal('Iced Vanilla Latte', 49, 59)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/espresso.jpg" alt="Espresso">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Espresso</div>
+                            <div class="item-price">₱49 (Regular) • ₱59 (Large)</div>
+                            <button class="btn add-to-cart" onclick="showSizeModal('Iced Vanilla Latte', 49, 59)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/vanilla latte.jpg" alt="Vanilla Latte">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Vanilla Latte</div>
+                            <div class="item-price">₱49 (Regular) • ₱59 (Large)</div>
+                            <button class="btn add-to-cart" onclick="showSizeModal('Iced Vanilla Latte', 49, 59)">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Iced Coffees Section -->
+            <section class="menu-category">
+                <div class="category-header">
+                    <h2 class="category-title">Iced Coffees</h2>
+                </div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/iced coffee.jpg" alt="Iced Coffee">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Iced Coffee</div>
+                            <div class="item-price">₱49 (Regular) • ₱59 (Large)</div>
+                            <button class="btn add-to-cart" onclick="showSizeModal('Iced Vanilla Latte', 49, 59)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/iced mocha latte.jpg" alt="Iced Mocha Latte">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Iced Mocha Latte</div>
+                            <div class="item-price">₱49 (Regular) • ₱59 (Large)</div>
+                            <button class="btn add-to-cart" onclick="showSizeModal('Iced Vanilla Latte', 49, 59)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/cold brew.jpg" alt="Cold Brew">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Cold Brew</div>
+                            <div class="item-price">₱49 (Regular) • ₱59 (Large)</div>
+                            <button class="btn add-to-cart" onclick="showSizeModal('Iced Vanilla Latte', 49, 59)">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Milk Tea Section -->
+            <section class="menu-category">
+                <div class="category-header">
+                    <h2 class="category-title">Milk Tea</h2>
+                </div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/wintermelon.jpg" alt="Wintermelon">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Wintermelon</div>
+                            <div class="item-price">₱49 (Regular) • ₱59 (Large)</div>
+                            <button class="btn add-to-cart" onclick="showSizeModal('Wintermelon', 49, 59)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/cookies and cream.jpg" alt="Cookies and Cream">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Cookies and Cream</div>
+                            <div class="item-price">₱49 (Regular) • ₱59 (Large)</div>
+                            <button class="btn add-to-cart" onclick="showSizeModal('Cookies and Cream', 49, 59)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/mango.jpg" alt="Mango">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Mango</div>
+                            <div class="item-price">₱49 (Regular) • ₱59 (Large)</div>
+                            <button class="btn add-to-cart" onclick="showSizeModal('Mango', 49, 59)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/strawberry.jpg" alt="Strawberry">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Strawberry</div>
+                            <div class="item-price">₱49 (Regular) • ₱59 (Large)</div>
+                            <button class="btn add-to-cart" onclick="showSizeModal('Strawberry', 49, 59)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/matcha.jpg" alt="Matcha">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Matcha</div>
+                            <div class="item-price">₱49 (Regular) • ₱59 (Large)</div>
+                            <button class="btn add-to-cart" onclick="showSizeModal('Matcha', 49, 59)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/chocolate.jpg" alt="Chocolate">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Chocolate</div>
+                            <div class="item-price">₱49 (Regular) • ₱59 (Large)</div>
+                            <button class="btn add-to-cart" onclick="showSizeModal('Chocolate', 49, 59)">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Snacks Section -->
+            <section class="menu-category">
+                <div class="category-header">
+                    <h2 class="category-title">Snacks</h2>
+                </div>
+                <div class="menu-grid">
+                    <!-- Single Price Items -->
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/Chocolate Chip Cookie.jpg" alt="Chocolate Chip Cookie">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Chocolate Chip Cookie</div>
+                            <div class="item-price">₱7 each</div>
+                            <button class="btn add-to-cart" onclick="addToCart('Chocolate Chip Cookie', 7)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/Croissant.jpg" alt="Croissant">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Croissant</div>
+                            <div class="item-price">₱35</div>
+                            <button class="btn add-to-cart" onclick="addToCart('Croissant', 35)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/ham sandwich.jpg" alt="Ham Sandwich">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Ham Sandwich</div>
+                            <div class="item-price">₱40</div>
+                            <button class="btn add-to-cart" onclick="addToCart('Ham Sandwich', 40)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/Garlic Bread.jpg" alt="Garlic Bread">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Garlic Bread</div>
+                            <div class="item-price">₱50</div>
+                            <button class="btn add-to-cart" onclick="addToCart('Garlic Bread', 50)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/Fries.jpg" alt="Fries">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Fries</div>
+                            <div class="item-price">₱20 (Small) • ₱49 (Large)</div>
+                            <button class="btn add-to-cart" onclick="showSizeModal('Fries', 20, 49)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/Burger.jpg" alt="Burger">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Burger</div>
+                            <div class="item-price">₱35 • ₱38 (with Cheese)</div>
+                            <button class="btn add-to-cart" onclick="showBurgerModal()">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/Cinnamon Roll.jpg" alt="Cinnamon Roll">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Cinnamon Roll</div>
+                            <div class="item-price">₱45</div>
+                            <button class="btn add-to-cart" onclick="addToCart('Cinnamon Roll', 45)">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-image">
+                            <img src="/static/images/Banana Bread.jpg" alt="Banana Bread">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">Banana Bread</div>
+                            <div class="item-price">₱40</div>
+                            <button class="btn add-to-cart" onclick="addToCart('Banana Bread', 40)">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Size Selection Modal -->
+    <div id="sizeModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3 id="modal-item-name">Select Size</h3>
+            <div class="size-options">
+                <div class="size-option" data-size="Regular">
+                    <input type="radio" id="size-regular" name="size" value="regular" checked>
+                    <label for="size-regular">Regular - ₱<span id="regular-price">49</span></label>
+                </div>
+                <div class="size-option" data-size="Large">
+                    <input type="radio" id="size-large" name="size" value="large">
+                    <label for="size-large">Large - ₱<span id="large-price">59</span></label>
+                </div>
+            </div>
+            <div class="quantity-selector">
+                <label for="quantity">Quantity:</label>
+                <div class="quantity-controls">
+                    <button type="button" class="quantity-btn" onclick="decreaseQuantity()">-</button>
+                    <input type="number" id="quantity" value="1" min="1" max="10">
+                    <button type="button" class="quantity-btn" onclick="increaseQuantity()">+</button>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="addToCartWithSize()">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Burger Options Modal -->
+    <div id="burgerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Burger Options</h3>
+            <div class="burger-options">
+                <div class="burger-option">
+                    <input type="radio" id="burger-plain" name="burger-type" value="plain" checked>
+                    <label for="burger-plain">Plain Burger - ₱35</label>
+                </div>
+                <div class="burger-option">
+                    <input type="radio" id="burger-cheese" name="burger-type" value="cheese">
+                    <label for="burger-cheese">Burger with Cheese - ₱38</label>
+                </div>
+            </div>
+            <div class="quantity-selector">
+                <label for="burger-quantity">Quantity:</label>
+                <div class="quantity-controls">
+                    <button type="button" class="quantity-btn" onclick="decreaseBurgerQuantity()">-</button>
+                    <input type="number" id="burger-quantity" value="1" min="1" max="10">
+                    <button type="button" class="quantity-btn" onclick="increaseBurgerQuantity()">+</button>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn btn-secondary" onclick="closeBurgerModal()">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="addBurgerToCart()">Add to Cart</button>
+            </div>
+        </div>
+    </div>    
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2025 FaithCafe. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/static/js/script.js"></script>
+    <script>
+        // Modal functionality
+        let currentItem = null;
+        let currentRegularPrice = 0;
+        let currentLargePrice = 0;
+
+        function showSizeModal(itemName, regularPrice, largePrice) {
+            currentItem = itemName;
+            currentRegularPrice = regularPrice;
+            currentLargePrice = largePrice;
+            
+            document.getElementById('modal-item-name').textContent = itemName;
+            document.getElementById('regular-price').textContent = regularPrice;
+            document.getElementById('large-price').textContent = largePrice;
+            document.getElementById('quantity').value = 1;
+            
+            document.getElementById('sizeModal').style.display = 'block';
+        }
+
+        function showBurgerModal() {
+            document.getElementById('burgerModal').style.display = 'block';
+            document.getElementById('burger-quantity').value = 1;
+        }
+
+        function closeModal() {
+            document.getElementById('sizeModal').style.display = 'none';
+        }
+
+        function closeBurgerModal() {
+            document.getElementById('burgerModal').style.display = 'none';
+        }
+
+        function increaseQuantity() {
+            const quantityInput = document.getElementById('quantity');
+            if (quantityInput.value < 10) {
+                quantityInput.value = parseInt(quantityInput.value) + 1;
+            }
+        }
+
+        function decreaseQuantity() {
+            const quantityInput = document.getElementById('quantity');
+            if (quantityInput.value > 1) {
+                quantityInput.value = parseInt(quantityInput.value) - 1;
+            }
+        }
+
+        function increaseBurgerQuantity() {
+            const quantityInput = document.getElementById('burger-quantity');
+            if (quantityInput.value < 10) {
+                quantityInput.value = parseInt(quantityInput.value) + 1;
+            }
+        }
+
+        function decreaseBurgerQuantity() {
+            const quantityInput = document.getElementById('burger-quantity');
+            if (quantityInput.value > 1) {
+                quantityInput.value = parseInt(quantityInput.value) - 1;
+            }
+        }
+
+        function addToCartWithSize() {
+            const selectedSize = document.querySelector('input[name="size"]:checked').value;
+            const quantity = parseInt(document.getElementById('quantity').value);
+            const price = selectedSize === 'regular' ? currentRegularPrice : currentLargePrice;
+            const itemName = `${currentItem} (${selectedSize.charAt(0).toUpperCase() + selectedSize.slice(1)})`;
+            
+            addToCart(itemName, price, quantity);
+            closeModal();
+        }
+
+        function addBurgerToCart() {
+            const selectedType = document.querySelector('input[name="burger-type"]:checked').value;
+            const quantity = parseInt(document.getElementById('burger-quantity').value);
+            const price = selectedType === 'plain' ? 35 : 38;
+            const itemName = selectedType === 'plain' ? 'Burger' : 'Burger with Cheese';
+            
+            addToCart(itemName, price, quantity);
+            closeBurgerModal();
+        }
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            const sizeModal = document.getElementById('sizeModal');
+            const burgerModal = document.getElementById('burgerModal');
+            
+            if (event.target === sizeModal) {
+                closeModal();
+            }
+            if (event.target === burgerModal) {
+                closeBurgerModal();
+            }
+        }
+
+        // Close modals with escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+                closeBurgerModal();
+            }
+        });
+        
+        // Public menu - no admin edit buttons here
+    </script>
+</body>
+</html>

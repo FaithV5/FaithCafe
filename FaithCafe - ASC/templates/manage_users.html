@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FaithCafe - Manage Users</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">FaithCafe - Manage Users</div>
+            <nav>
+                <ul>
+                    <li><a href="/templates/home.html">Home</a></li>
+                    <li><a href="/templates/adminmenu.html">Menu</a></li>
+                    <li><a href="/templates/manage_users.html">Manage Users</a></li>
+                </ul>
+            </nav>
+            <div id="auth-links" class="auth-links"></div>
+            <button id="theme-toggle" class="theme-toggle">🌙</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1 class="page-title">Manage Users</h1>
+            <section class="menu-category" style="margin-top:10px;">
+                <div id="admin-users-list"></div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2025 FaithCafe. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/static/js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!isRole('admin')) {
+                showNotification('Access denied. Admin only page.');
+                setTimeout(() => window.location.href = '/index.html', 1200);
+                return;
+            }
+
+            renderAdminUsers();
+        });
+
+        function renderAdminUsers() {
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            const container = document.getElementById('admin-users-list');
+            container.innerHTML = '';
+            if (users.length === 0) {
+                container.innerHTML = '<p>No users yet.</p>';
+                return;
+            }
+            users.forEach((u, idx) => {
+                const el = document.createElement('div');
+                el.className = 'order-history-card';
+                el.innerHTML = `
+                    <div style="display:flex;justify-content:space-between;align-items:center;">
+                        <div>
+                            <div><strong>${u.username}</strong> (${u.email})</div>
+                            <div>Role: ${u.role || 'customer'}</div>
+                        </div>
+                        <div>
+                            <button class="btn" onclick="deleteUser(${idx})">Delete</button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(el);
+            });
+        }
+
+        // Role toggling removed per request
+
+        function deleteUser(idx) {
+            if (!confirm('Delete this user?')) return;
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            users.splice(idx,1);
+            localStorage.setItem('users', JSON.stringify(users));
+            renderAdminUsers();
+            showNotification('User deleted', 'success');
+        }
+    </script>
+</body>
+</html>
