@@ -17,7 +17,8 @@ const pool = new Pool({
 // 🧾 Route: Get all items from your table
 app.get("/api/menu", async (req, res) => {
   try {
-    const result = await pool.query("SELECT * FaithCafedb ORDER BY id ASC");
+    // ✅ FIX: Missing 'FROM' keyword in SQL query
+    const result = await pool.query("SELECT * FROM FaithCafedb ORDER BY id ASC");
     res.json(result.rows);
   } catch (err) {
     console.error("Error fetching menu:", err);
@@ -25,5 +26,5 @@ app.get("/api/menu", async (req, res) => {
   }
 });
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
