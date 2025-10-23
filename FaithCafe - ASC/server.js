@@ -10,7 +10,7 @@ app.use(express.json());
 
 // 🟢 Connect to Neon PostgreSQL
 const pool = new Pool({
-  connectionString: "postgresql://neondb_owner:npg_npd2tPgTAU5V@ep-dawn-firefly-a15q0cl5-pooler.ap-southeast-1.aws.neon.tech/neondb",
+  connectionString: process.env.DATABASE_URL,
   ssl: { rejectUnauthorized: false }
 });
 
