@@ -1,0 +1,220 @@
+{
+  "menu": [
+    {
+      "name": "Cappuccino",
+      "price": 49,
+      "image": "/static/images/cappuccino.jpg",
+      "category": "hot-coffees",
+      "sizes": {
+        "regular": 49,
+        "large": 59
+      }
+    },
+    {
+      "name": "Cafe Latte",
+      "price": 49,
+      "image": "/static/images/cafe latte.jpg",
+      "category": "hot-coffees",
+      "sizes": {
+        "regular": 49,
+        "large": 59
+      }
+    },
+    {
+      "name": "Red Velvet Latte",
+      "price": 49,
+      "image": "/static/images/red velvet latte.jpg",
+      "category": "hot-coffees",
+      "sizes": {
+        "regular": 49,
+        "large": 59
+      }
+    },
+    {
+      "name": "Flat White",
+      "price": 49,
+      "image": "/static/images/flat white.jpg",
+      "category": "hot-coffees",
+      "sizes": {
+        "regular": 49,
+        "large": 59
+      }
+    },
+    {
+      "name": "Cinnamon Coffee",
+      "price": 49,
+      "image": "/static/images/cinnamon coffee.jpg",
+      "category": "hot-coffees",
+      "sizes": {
+        "regular": 49,
+        "large": 59
+      }
+    },
+    {
+      "name": "Espresso",
+      "price": 49,
+      "image": "/static/images/espresso.jpg",
+      "category": "hot-coffees",
+      "sizes": {
+        "regular": 49,
+        "large": 59
+      }
+    },
+    {
+      "name": "Vanilla Latte",
+      "price": 49,
+      "image": "/static/images/vanilla latte.jpg",
+      "category": "hot-coffees",
+      "sizes": {
+        "regular": 49,
+        "large": 59
+      }
+    },
+    {
+      "name": "Iced Coffee",
+      "price": 49,
+      "image": "/static/images/iced coffee.jpg",
+      "category": "iced-coffees",
+      "sizes": {
+        "regular": 49,
+        "large": 59
+      }
+    },
+    {
+      "name": "Iced Mocha Latte",
+      "price": 49,
+      "image": "/static/images/iced mocha latte.jpg",
+      "category": "iced-coffees",
+      "sizes": {
+        "regular": 49,
+        "large": 59
+      }
+    },
+    {
+      "name": "Cold Brew",
+      "price": 49,
+      "image": "/static/images/cold brew.jpg",
+      "category": "iced-coffees",
+      "sizes": {
+        "regular": 49,
+        "large": 59
+      }
+    },
+    {
+      "name": "Wintermelon",
+      "price": 49,
+      "image": "/static/images/wintermelon.jpg",
+      "category": "milk-tea",
+      "sizes": {
+        "regular": 49,
+        "large": 59
+      }
+    },
+    {
+      "name": "Cookies and Cream",
+      "price": 49,
+      "image": "/static/images/cookies and cream.jpg",
+      "category": "milk-tea",
+      "sizes": {
+        "regular": 49,
+        "large": 59
+      }
+    },
+    {
+      "name": "Mango",
+      "price": 49,
+      "image": "/static/images/mango.jpg",
+      "category": "milk-tea",
+      "sizes": {
+        "regular": 49,
+        "large": 59
+      }
+    },
+    {
+      "name": "Strawberry",
+      "price": 49,
+      "image": "/static/images/strawberry.jpg",
+      "category": "milk-tea",
+      "sizes": {
+        "regular": 49,
+        "large": 59
+      }
+    },
+    {
+      "name": "Matcha",
+      "price": 49,
+      "image": "/static/images/matcha.jpg",
+      "category": "milk-tea",
+      "sizes": {
+        "regular": 49,
+        "large": 59
+      }
+    },
+    {
+      "name": "Chocolate",
+      "price": 49,
+      "image": "/static/images/chocolate.jpg",
+      "category": "milk-tea",
+      "sizes": {
+        "regular": 49,
+        "large": 59
+      }
+    },
+    {
+      "name": "Chocolate Chip Cookie",
+      "price": 7,
+      "image": "/static/images/Chocolate Chip Cookie.jpg",
+      "category": "snacks"
+    },
+    {
+      "name": "Croissant",
+      "price": 35,
+      "image": "/static/images/Croissant.jpg",
+      "category": "snacks"
+    },
+    {
+      "name": "Ham Sandwich",
+      "price": 40,
+      "image": "/static/images/ham sandwich.jpg",
+      "category": "snacks"
+    },
+    {
+      "name": "Garlic Bread",
+      "price": 50,
+      "image": "/static/images/Garlic Bread.jpg",
+      "category": "snacks"
+    },
+    {
+      "name": "Fries",
+      "price": 20,
+      "image": "/static/images/Fries.jpg",
+      "category": "snacks",
+      "sizes": {
+        "small": 20,
+        "large": 49
+      }
+    },
+    {
+      "name": "Burger",
+      "price": 35,
+      "image": "/static/images/Burger.jpg",
+      "category": "snacks",
+      "options": {
+        "plain": 35,
+        "with cheese": 38
+      }
+    },
+    {
+      "name": "Cinnamon Roll",
+      "price": 45,
+      "image": "/static/images/Cinnamon Roll.jpg",
+      "category": "snacks"
+    },
+    {
+      "name": "Banana Bread",
+      "price": 40,
+      "image": "/static/images/Banana Bread.jpg",
+      "category": "snacks"
+    }
+  ]
+}

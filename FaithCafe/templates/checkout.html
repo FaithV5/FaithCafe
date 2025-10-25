@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FaithCafe - Checkout</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">FaithCafe</div>
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
+                    <li><a href="status.html">Delivery Status</a></li>
+                </ul>
+            </nav>
+            <button id="theme-toggle" class="theme-toggle">🌙</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1 class="page-title">Checkout</h1>
+            
+            <div class="checkout-layout">
+                <div class="form-container">
+                    <h2>Shipping Information</h2>
+                    <form id="checkout-form">
+                        <div class="form-group">
+                            <label for="full-name">Name</label>
+                            <input type="text" id="full-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Complete Address</label>
+                            <input type="text" id="address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" required>
+                        </div>
+                        
+                        <h3>Payment Method</h3>
+                        <div class="payment-options">
+                            <div class="payment-option">
+                                <input type="radio" id="cash" name="payment" value="cash" checked>
+                                <label for="cash">Cash on Delivery (+₱10 shipping fee)</label>
+                            </div>
+                            <div class="payment-option">
+                                <input type="radio" id="card" name="payment" value="card">
+                                <label for="card">Credit/Debit Card</label>
+                            </div>
+                            <div class="payment-option">
+                                <input type="radio" id="gcash" name="payment" value="gcash">
+                                <label for="gcash">GCash</label>
+                            </div>
+                        </div>
+                        
+                        <!-- Card Payment Fields -->
+                        <div id="card-fields" class="payment-fields" style="display: none;">
+                            <div class="form-group">
+                                <label for="card-number">Card Number</label>
+                                <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="19">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="card-expiry">Expiry Date</label>
+                                    <input type="text" id="card-expiry" placeholder="MM/YY" maxlength="5">
+                                </div>
+                                <div class="form-group">
+                                    <label for="card-cvc">CVC</label>
+                                    <input type="text" id="card-cvc" placeholder="123" maxlength="3">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- GCash Payment Fields -->
+                        <div id="gcash-fields" class="payment-fields" style="display: none;">
+                            <div class="form-group">
+                                <label for="gcash-number">GCash Number</label>
+                                <input type="tel" id="gcash-number" placeholder="09XX XXX XXXX">
+                            </div>
+                            <div class="payment-note">
+                                <p>You will receive a payment request via GCash after placing your order.</p>
+                            </div>
+                        </div>
+                        
+                        <button type="button" class="btn" onclick="placeOrder()" style="width: 100%; margin-top: 20px;">Place Order</button>
+                    </form>
+                </div>
+                
+                <div class="order-summary">
+                    <h2>Order Summary</h2>
+                    <div id="order-summary">
+                        <!-- Order items will be dynamically inserted here -->
+                    </div>
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="order-subtotal">₱0.00</span>
+                    </div>
+                    <div class="summary-row shipping-fee">
+                        <span>Shipping Fee:</span>
+                        <span id="shipping-fee">₱0.00</span>
+                    </div>
+                    <div class="summary-row summary-total">
+                        <span>Total:</span>
+                        <span id="total-amount">₱0.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2025 FaithCafe. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../static/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "cart": [
+    {
+      "name": "Red Velvet Latte (Regular)",
+      "price": 49,
+      "quantity": 1
+    },
+    {
+      "name": "Chocolate Chip Cookie",
+      "price": 7,
+      "quantity": 3
+    }
+  ]
+}

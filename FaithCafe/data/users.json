@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "username": "staff",
+      "email": "staff@gmail.com",
+      "password": "staff",
+      "role": "staff",
+      "address": "Sta Maria, Bauan, Batangas",
+      "contactNumber": "09123456789"
+    },
+    {
+      "username": "admin",
+      "email": "faithm.valencia5@gmail.com",
+      "password": "admin",
+      "role": "admin",
+      "address": "San Pedro, Bauan, Batangas",
+      "contactNumber": "09938564677"
+    },
+    {
+      "username": "faith",
+      "email": "faithmaramotvalencia05@gmail.com",
+      "password": "faith",
+      "role": "customer",
+      "address": "San Pedro, Bauan, Batangas",
+      "contactNumber": "09938564676"
+    }
+  ]
+}
