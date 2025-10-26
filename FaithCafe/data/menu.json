@@ -6,8 +6,8 @@
       "image": "/static/images/cappuccino.jpg",
       "category": "hot-coffees",
       "sizes": {
-        "regular": 49,
-        "large": 59
+        "regular": 39,
+        "large": 49
       }
     },
     {
@@ -16,8 +16,8 @@
       "image": "/static/images/cafe latte.jpg",
       "category": "hot-coffees",
       "sizes": {
-        "regular": 49,
-        "large": 59
+        "regular": 39,
+        "large": 49
       }
     },
     {
@@ -26,8 +26,8 @@
       "image": "/static/images/red velvet latte.jpg",
       "category": "hot-coffees",
       "sizes": {
-        "regular": 49,
-        "large": 59
+        "regular": 39,
+        "large": 49
       }
     },
     {
@@ -36,8 +36,8 @@
       "image": "/static/images/flat white.jpg",
       "category": "hot-coffees",
       "sizes": {
-        "regular": 49,
-        "large": 59
+        "regular": 39,
+        "large": 49
       }
     },
     {
@@ -46,8 +46,8 @@
       "image": "/static/images/cinnamon coffee.jpg",
       "category": "hot-coffees",
       "sizes": {
-        "regular": 49,
-        "large": 59
+        "regular": 39,
+        "large": 49
       }
     },
     {
@@ -56,8 +56,8 @@
       "image": "/static/images/espresso.jpg",
       "category": "hot-coffees",
       "sizes": {
-        "regular": 49,
-        "large": 59
+        "regular": 39,
+        "large": 49
       }
     },
     {
@@ -66,8 +66,8 @@
       "image": "/static/images/vanilla latte.jpg",
       "category": "hot-coffees",
       "sizes": {
-        "regular": 49,
-        "large": 59
+        "regular": 39,
+        "large": 49
       }
     },
     {
@@ -76,8 +76,8 @@
       "image": "/static/images/iced coffee.jpg",
       "category": "iced-coffees",
       "sizes": {
-        "regular": 49,
-        "large": 59
+        "regular": 39,
+        "large": 49
       }
     },
     {
@@ -86,8 +86,8 @@
       "image": "/static/images/iced mocha latte.jpg",
       "category": "iced-coffees",
       "sizes": {
-        "regular": 49,
-        "large": 59
+        "regular": 39,
+        "large": 49
       }
     },
     {
@@ -96,8 +96,8 @@
       "image": "/static/images/cold brew.jpg",
       "category": "iced-coffees",
       "sizes": {
-        "regular": 49,
-        "large": 59
+        "regular": 39,
+        "large": 49
       }
     },
     {
@@ -106,8 +106,8 @@
       "image": "/static/images/wintermelon.jpg",
       "category": "milk-tea",
       "sizes": {
-        "regular": 49,
-        "large": 59
+        "regular": 39,
+        "large": 49
       }
     },
     {
@@ -116,8 +116,8 @@
       "image": "/static/images/cookies and cream.jpg",
       "category": "milk-tea",
       "sizes": {
-        "regular": 49,
-        "large": 59
+        "regular": 39,
+        "large": 49
       }
     },
     {
@@ -126,8 +126,8 @@
       "image": "/static/images/mango.jpg",
       "category": "milk-tea",
       "sizes": {
-        "regular": 49,
-        "large": 59
+        "regular": 39,
+        "large": 49
       }
     },
     {
@@ -136,8 +136,8 @@
       "image": "/static/images/strawberry.jpg",
       "category": "milk-tea",
       "sizes": {
-        "regular": 49,
-        "large": 59
+        "regular": 39,
+        "large": 49
       }
     },
     {
@@ -146,8 +146,8 @@
       "image": "/static/images/matcha.jpg",
       "category": "milk-tea",
       "sizes": {
-        "regular": 49,
-        "large": 59
+        "regular": 39,
+        "large": 49
       }
     },
     {
@@ -156,8 +156,8 @@
       "image": "/static/images/chocolate.jpg",
       "category": "milk-tea",
       "sizes": {
-        "regular": 49,
-        "large": 59
+        "regular": 39,
+        "large": 49
       }
     },
     {
@@ -217,4 +217,5 @@
       "category": "snacks"
     }
   ]
+
 }
