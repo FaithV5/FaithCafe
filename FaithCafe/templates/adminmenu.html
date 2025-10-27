@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FaithCafe - Admin Menu</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="/static/images/logo.png" alt="FaithCafe" class="logo-icon">
+                FaithCafe
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="adminmenu.html">Manage Menu</a></li>
+                    <li><a href="manage_users.html">Manage Users</a></li>
+                </ul>
+            </nav>
+            <button id="theme-toggle" class="theme-toggle">🌙</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1 class="page-title">Manage Menu</h1>
+
+            <!-- Add New Item Button -->
+            <div class="add-item-header">
+                <button class="btn" onclick="openAddModal()">
+                    + Add New Item
+                </button>
+            </div>
+            
+            <!-- Menu Items List with Category Tabs -->
+            <section class="menu-category">
+                <div class="category-header">
+                    <h2 class="category-title">Current Menu Items</h2>
+                </div>
+                
+                <!-- Category Tabs -->
+                <div class="category-tabs">
+                    <div class="category-tab active" onclick="showCategory('all')">All Items</div>
+                    <div class="category-tab" onclick="showCategory('hot-coffees')">Hot Coffees</div>
+                    <div class="category-tab" onclick="showCategory('iced-coffees')">Iced Coffees</div>
+                    <div class="category-tab" onclick="showCategory('milk-tea')">Milk Tea</div>
+                    <div class="category-tab" onclick="showCategory('snacks')">Snacks</div>
+                </div>
+                
+                <!-- Category Sections -->
+                <div id="all-items" class="category-section active">
+                    <div id="admin-menu-list-all" class="menu-grid">
+                        <!-- All items will be loaded here -->
+                    </div>
+                </div>
+                
+                <div id="hot-coffees" class="category-section">
+                    <div id="admin-menu-list-hot-coffees" class="menu-grid">
+                        <!-- Hot coffees will be loaded here -->
+                    </div>
+                </div>
+                
+                <div id="iced-coffees" class="category-section">
+                    <div id="admin-menu-list-iced-coffees" class="menu-grid">
+                        <!-- Iced coffees will be loaded here -->
+                    </div>
+                </div>
+                
+                <div id="milk-tea" class="category-section">
+                    <div id="admin-menu-list-milk-tea" class="menu-grid">
+                        <!-- Milk tea will be loaded here -->
+                    </div>
+                </div>
+                
+                <div id="snacks" class="category-section">
+                    <div id="admin-menu-list-snacks" class="menu-grid">
+                        <!-- Snacks will be loaded here -->
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Add Item Modal -->
+    <div id="addModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeAddModal()">&times;</span>
+            <h3>Add New Menu Item</h3>
+            <form id="add-item-form">
+                <div class="form-group">
+                    <label for="item-name">Item Name</label>
+                    <input type="text" id="item-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="item-category">Category</label>
+                    <select id="item-category" required>
+                        <option value="hot-coffees">Hot Coffees</option>
+                        <option value="iced-coffees">Iced Coffees</option>
+                        <option value="milk-tea">Milk Tea</option>
+                        <option value="snacks">Snacks</option>
+                    </select>
+                </div>
+                
+                <!-- Image Upload Section -->
+                <div class="form-group">
+                    <label for="item-image">Item Image</label>
+                    <div class="image-upload-container">
+                        <input type="file" id="item-image-file" accept="image/*" style="display: none;">
+                        <button type="button" class="btn btn-secondary" onclick="document.getElementById('item-image-file').click()">
+                            Choose Image
+                        </button>
+                        <span id="image-file-name" class="image-file-name">No image selected</span>
+                    </div>
+                    <div id="image-preview" class="image-preview" style="display: none;">
+                        <img id="preview-image" src="" alt="Preview">
+                        <button type="button" class="btn remove-image-btn" onclick="removeImage()">Remove</button>
+                    </div>
+                    <input type="hidden" id="item-image-data">
+                </div>
+                
+                <!-- Price Type Selection -->
+                <div class="price-type-section">
+                    <label><strong>Price Type:</strong></label>
+                    <div class="price-type-options">
+                        <input type="radio" id="price-single" name="price-type" value="single" checked onchange="togglePriceType()">
+                        <label for="price-single">Single Price</label>
+                        
+                        <input type="radio" id="price-variation" name="price-type" value="variation" onchange="togglePriceType()">
+                        <label for="price-variation">Price Variations</label>
+                    </div>
+                    
+                    <!-- Single Price -->
+                    <div id="single-price-section">
+                        <div class="form-group">
+                            <label for="item-price">Price (₱)</label>
+                            <input type="number" id="item-price" step="0.01" required>
+                        </div>
+                    </div>
+                    
+                    <!-- Price Variations -->
+                    <div id="variation-price-section">
+                        <div id="variations-container">
+                            <div class="variation-row">
+                                <input type="text" placeholder="Variation name (e.g., Regular, Large)" class="variation-name">
+                                <input type="number" placeholder="Price" step="0.01" class="variation-price">
+                                <button type="button" class="remove-variation-btn" onclick="removeVariation(this)">×</button>
+                            </div>
+                        </div>
+                        <button type="button" class="add-variation-btn" onclick="addVariation()">+ Add Variation</button>
+                    </div>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeAddModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Item</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Item Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeEditModal()">&times;</span>
+            <h3>Edit Menu Item</h3>
+            <form id="edit-item-form">
+                <input type="hidden" id="edit-item-index">
+                <div class="form-group">
+                    <label for="edit-item-name">Item Name</label>
+                    <input type="text" id="edit-item-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-item-category">Category</label>
+                    <select id="edit-item-category" required>
+                        <option value="hot-coffees">Hot Coffees</option>
+                        <option value="iced-coffees">Iced Coffees</option>
+                        <option value="milk-tea">Milk Tea</option>
+                        <option value="snacks">Snacks</option>
+                    </select>
+                </div>
+                
+                <!-- Edit Image Upload Section -->
+                <div class="form-group">
+                    <label for="edit-item-image">Item Image</label>
+                    <div class="image-upload-container">
+                        <input type="file" id="edit-item-image-file" accept="image/*" style="display: none;">
+                        <button type="button" class="btn btn-secondary" onclick="document.getElementById('edit-item-image-file').click()">
+                            Change Image
+                        </button>
+                        <span id="edit-image-file-name" class="image-file-name">No image selected</span>
+                    </div>
+                    <div id="edit-image-preview" class="image-preview">
+                        <img id="edit-preview-image" src="" alt="Preview">
+                        <button type="button" class="btn remove-image-btn" onclick="removeEditImage()">Remove</button>
+                    </div>
+                    <input type="hidden" id="edit-item-image-data">
+                </div>
+                
+                <!-- Edit Price Type Selection -->
+                <div class="price-type-section">
+                    <label><strong>Price Type:</strong></label>
+                    <div class="price-type-options">
+                        <input type="radio" id="edit-price-single" name="edit-price-type" value="single" checked onchange="toggleEditPriceType()">
+                        <label for="edit-price-single">Single Price</label>
+                        
+                        <input type="radio" id="edit-price-variation" name="edit-price-type" value="variation" onchange="toggleEditPriceType()">
+                        <label for="edit-price-variation">Price Variations</label>
+                    </div>
+                    
+                    <!-- Edit Single Price -->
+                    <div id="edit-single-price-section">
+                        <div class="form-group">
+                            <label for="edit-item-price">Price (₱)</label>
+                            <input type="number" id="edit-item-price" step="0.01" required>
+                        </div>
+                    </div>
+                    
+                    <!-- Edit Price Variations -->
+                    <div id="edit-variation-price-section">
+                        <div id="edit-variations-container">
+                            <!-- Variations will be added here dynamically -->
+                        </div>
+                        <button type="button" class="add-variation-btn" onclick="addEditVariation()">+ Add Variation</button>
+                    </div>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeEditModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2025 FaithCafe. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../static/js/script.js"></script>
+    <script>
+        let currentMenuItems = [];
+        let currentCategory = 'all';
+        let currentImageData = null;
+        let currentEditImageData = null;
+
+        // Load menu items when page loads
+        document.addEventListener('DOMContentLoaded', async function() {
+            if (!isRole('admin')) {
+                showNotification('Access denied. Admin only page.');
+                setTimeout(() => window.location.href = '../index.html', 1200);
+                return;
+            }
+
+            await loadMenuItems();
+            setupEventListeners();
+            // Initialize price type display
+            togglePriceType();
+            toggleEditPriceType();
+        });
+
+        async function loadMenuItems() {
+            try {
+                currentMenuItems = await getMenuItems();
+                renderMenuItems();
+            } catch (error) {
+                console.error('Error loading menu items:', error);
+                showNotification('Error loading menu items', 'error');
+            }
+        }
+
+        function renderMenuItems() {
+            // Render all categories
+            const categories = ['all', 'hot-coffees', 'iced-coffees', 'milk-tea', 'snacks'];
+            categories.forEach(category => {
+                const container = document.getElementById(`admin-menu-list-${category}`);
+                if (!container) return;
+                
+                container.innerHTML = '';
+
+                const itemsToShow = category === 'all' 
+                    ? currentMenuItems 
+                    : currentMenuItems.filter(item => item.category === category);
+
+                if (itemsToShow.length === 0) {
+                    container.innerHTML = `<p>No ${category === 'all' ? '' : category.replace('-', ' ')} items yet.</p>`;
+                    return;
+                }
+
+                itemsToShow.forEach((item, index) => {
+                    const actualIndex = currentMenuItems.findIndex(m => m.name === item.name);
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'menu-item';
+                    
+                    let priceHTML = '';
+                    if (item.sizes) {
+                        // Display size variations
+                        priceHTML = Object.entries(item.sizes)
+                            .map(([size, price]) => `${size.charAt(0).toUpperCase() + size.slice(1)}: ₱${price}`)
+                            .join('<br>');
+                    } else if (item.options) {
+                        // Display option variations
+                        priceHTML = Object.entries(item.options)
+                            .map(([option, price]) => `${option}: ₱${price}`)
+                            .join('<br>');
+                    } else {
+                        // Single price
+                        priceHTML = `₱${item.price.toFixed(2)}`;
+                    }
+
+                    itemElement.innerHTML = `
+                        <div class="item-image">
+                            <img src="${item.image || '/static/images/placeholder.jpg'}" alt="${item.name}" onerror="this.src='/static/images/placeholder.jpg'">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">${item.name}</div>
+                            <div class="item-price">${priceHTML}</div>
+                            <div class="item-category">${getCategoryName(item.category)}</div>
+                            <div class="admin-controls">
+                                <button class="btn" onclick="openEditModal(${actualIndex})">Edit</button>
+                                <button class="btn delete-btn" onclick="deleteMenuItem(${actualIndex})">Delete</button>
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(itemElement);
+                });
+            });
+        }
+
+        function getCategoryName(category) {
+            const categories = {
+                'hot-coffees': 'Hot Coffees',
+                'iced-coffees': 'Iced Coffees', 
+                'milk-tea': 'Milk Tea',
+                'snacks': 'Snacks'
+            };
+            return categories[category] || category;
+        }
+
+        function showCategory(category) {
+            // Update tabs
+            document.querySelectorAll('.category-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelector(`.category-tab[onclick="showCategory('${category}')"]`).classList.add('active');
+            
+            // Update sections
+            document.querySelectorAll('.category-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(category).classList.add('active');
+            
+            currentCategory = category;
+        }
+
+        // Add Modal Functions
+        function openAddModal() {
+            // Reset form
+            document.getElementById('add-item-form').reset();
+            removeImage();
+            // Reset to single price by default
+            document.getElementById('price-single').checked = true;
+            togglePriceType();
+            
+            document.getElementById('addModal').style.display = 'block';
+        }
+
+        function closeAddModal() {
+            document.getElementById('addModal').style.display = 'none';
+            currentImageData = null;
+        }
+
+        // Image Upload Functions
+        function setupImageUpload() {
+            // Add item image upload
+            document.getElementById('item-image-file').addEventListener('change', function(e) {
+                handleImageUpload(e, 'add');
+            });
+
+            // Edit item image upload
+            document.getElementById('edit-item-image-file').addEventListener('change', function(e) {
+                handleImageUpload(e, 'edit');
+            });
+        }
+
+        function handleImageUpload(event, type) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            // Validate file type
+            if (!file.type.startsWith('image/')) {
+                showNotification('Please select an image file', 'error');
+                return;
+            }
+
+            // Validate file size (max 2MB)
+            if (file.size > 2 * 1024 * 1024) {
+                showNotification('Image size should be less than 2MB', 'error');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imageData = e.target.result;
+                
+                if (type === 'add') {
+                    currentImageData = imageData;
+                    document.getElementById('image-file-name').textContent = file.name;
+                    document.getElementById('preview-image').src = imageData;
+                    document.getElementById('image-preview').style.display = 'block';
+                } else {
+                    currentEditImageData = imageData;
+                    document.getElementById('edit-image-file-name').textContent = file.name;
+                    document.getElementById('edit-preview-image').src = imageData;
+                    document.getElementById('edit-image-preview').style.display = 'block';
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function removeImage() {
+            currentImageData = null;
+            document.getElementById('item-image-file').value = '';
+            document.getElementById('image-file-name').textContent = 'No image selected';
+            document.getElementById('image-preview').style.display = 'none';
+        }
+
+        function removeEditImage() {
+            currentEditImageData = null;
+            document.getElementById('edit-item-image-file').value = '';
+            document.getElementById('edit-image-file-name').textContent = 'No image selected';
+            document.getElementById('edit-image-preview').style.display = 'none';
+        }
+
+        // Price Type Toggle Functions
+        function togglePriceType() {
+            const singlePriceSection = document.getElementById('single-price-section');
+            const variationPriceSection = document.getElementById('variation-price-section');
+            const isSinglePrice = document.getElementById('price-single').checked;
+            
+            singlePriceSection.style.display = isSinglePrice ? 'block' : 'none';
+            variationPriceSection.style.display = isSinglePrice ? 'none' : 'block';
+            
+            // Clear variations when switching to single price
+            if (isSinglePrice) {
+                document.getElementById('variations-container').innerHTML = `
+                    <div class="variation-row">
+                        <input type="text" placeholder="Variation name (e.g., Regular, Large)" class="variation-name">
+                        <input type="number" placeholder="Price" step="0.01" class="variation-price">
+                        <button type="button" class="remove-variation-btn" onclick="removeVariation(this)">×</button>
+                    </div>
+                `;
+            }
+        }
+
+        function toggleEditPriceType() {
+            const singlePriceSection = document.getElementById('edit-single-price-section');
+            const variationPriceSection = document.getElementById('edit-variation-price-section');
+            const isSinglePrice = document.getElementById('edit-price-single').checked;
+            
+            singlePriceSection.style.display = isSinglePrice ? 'block' : 'none';
+            variationPriceSection.style.display = isSinglePrice ? 'none' : 'block';
+        }
+
+        function addVariation() {
+            const container = document.getElementById('variations-container');
+            const newRow = document.createElement('div');
+            newRow.className = 'variation-row';
+            newRow.innerHTML = `
+                <input type="text" placeholder="Variation name (e.g., Regular, Large)" class="variation-name">
+                <input type="number" placeholder="Price" step="0.01" class="variation-price">
+                <button type="button" class="remove-variation-btn" onclick="removeVariation(this)">×</button>
+            `;
+            container.appendChild(newRow);
+        }
+
+        function addEditVariation() {
+            const container = document.getElementById('edit-variations-container');
+            const newRow = document.createElement('div');
+            newRow.className = 'variation-row';
+            newRow.innerHTML = `
+                <input type="text" placeholder="Variation name (e.g., Regular, Large)" class="variation-name">
+                <input type="number" placeholder="Price" step="0.01" class="variation-price">
+                <button type="button" class="remove-variation-btn" onclick="removeEditVariation(this)">×</button>
+            `;
+            container.appendChild(newRow);
+        }
+
+        function removeVariation(button) {
+            const row = button.parentElement;
+            if (document.querySelectorAll('.variation-row').length > 1) {
+                row.remove();
+            }
+        }
+
+        function removeEditVariation(button) {
+            const row = button.parentElement;
+            if (document.querySelectorAll('#edit-variations-container .variation-row').length > 1) {
+                row.remove();
+            }
+        }
+
+        function setupEventListeners() {
+            setupImageUpload();
+
+            // Add item form
+            document.getElementById('add-item-form').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const itemName = document.getElementById('item-name').value.trim();
+                const category = document.getElementById('item-category').value;
+                const isSinglePrice = document.getElementById('price-single').checked;
+                
+                let newItem = {
+                    name: itemName,
+                    category: category,
+                    image: currentImageData || '/static/images/placeholder.jpg'
+                };
+
+                if (isSinglePrice) {
+                    const price = parseFloat(document.getElementById('item-price').value);
+                    if (!itemName || isNaN(price)) {
+                        showNotification('Please provide valid name and price', 'error');
+                        return;
+                    }
+                    newItem.price = price;
+                } else {
+                    // Process variations
+                    const variationRows = document.querySelectorAll('#variations-container .variation-row');
+                    const variations = {};
+                    let hasValidVariations = false;
+                    
+                    variationRows.forEach(row => {
+                        const nameInput = row.querySelector('.variation-name');
+                        const priceInput = row.querySelector('.variation-price');
+                        const name = nameInput.value.trim();
+                        const price = parseFloat(priceInput.value);
+                        
+                        if (name && !isNaN(price)) {
+                            variations[name.toLowerCase()] = price;
+                            hasValidVariations = true;
+                        }
+                    });
+                    
+                    if (!hasValidVariations) {
+                        showNotification('Please add at least one valid variation with name and price', 'error');
+                        return;
+                    }
+                    
+                    // Determine if it's sizes (for drinks) or options (for snacks)
+                    if (category === 'snacks') {
+                        newItem.options = variations;
+                    } else {
+                        newItem.sizes = variations;
+                    }
+                }
+
+                try {
+                    currentMenuItems.push(newItem);
+                    await saveMenuItems(currentMenuItems);
+                    renderMenuItems();
+                    closeAddModal();
+                    showNotification('Item added successfully!');
+                } catch (error) {
+                    console.error('Error adding item:', error);
+                    showNotification('Error adding item', 'error');
+                }
+            });
+
+            // Edit item form
+            document.getElementById('edit-item-form').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const index = parseInt(document.getElementById('edit-item-index').value);
+                const itemName = document.getElementById('edit-item-name').value.trim();
+                const category = document.getElementById('edit-item-category').value;
+                const isSinglePrice = document.getElementById('edit-price-single').checked;
+                
+                let updatedItem = {
+                    name: itemName,
+                    category: category,
+                    image: currentEditImageData || currentMenuItems[index].image
+                };
+
+                if (isSinglePrice) {
+                    const price = parseFloat(document.getElementById('edit-item-price').value);
+                    if (!itemName || isNaN(price)) {
+                        showNotification('Please provide valid name and price', 'error');
+                        return;
+                    }
+                    updatedItem.price = price;
+                    // Remove variations if they exist
+                    delete updatedItem.sizes;
+                    delete updatedItem.options;
+                } else {
+                    // Process variations
+                    const variationRows = document.querySelectorAll('#edit-variations-container .variation-row');
+                    const variations = {};
+                    let hasValidVariations = false;
+                    
+                    variationRows.forEach(row => {
+                        const nameInput = row.querySelector('.variation-name');
+                        const priceInput = row.querySelector('.variation-price');
+                        const name = nameInput.value.trim();
+                        const price = parseFloat(priceInput.value);
+                        
+                        if (name && !isNaN(price)) {
+                            variations[name.toLowerCase()] = price;
+                            hasValidVariations = true;
+                        }
+                    });
+                    
+                    if (!hasValidVariations) {
+                        showNotification('Please add at least one valid variation with name and price', 'error');
+                        return;
+                    }
+                    
+                    // Determine if it's sizes (for drinks) or options (for snacks)
+                    if (category === 'snacks') {
+                        updatedItem.options = variations;
+                    } else {
+                        updatedItem.sizes = variations;
+                    }
+                    delete updatedItem.price;
+                }
+
+                try {
+                    currentMenuItems[index] = updatedItem;
+                    await saveMenuItems(currentMenuItems);
+                    renderMenuItems();
+                    closeEditModal();
+                    showNotification('Item updated successfully!');
+                } catch (error) {
+                    console.error('Error updating item:', error);
+                    showNotification('Error updating item', 'error');
+                }
+            });
+        }
+
+        function openEditModal(index) {
+            const item = currentMenuItems[index];
+            document.getElementById('edit-item-index').value = index;
+            document.getElementById('edit-item-name').value = item.name;
+            document.getElementById('edit-item-category').value = item.category;
+            
+            // Set image preview
+            currentEditImageData = null;
+            document.getElementById('edit-preview-image').src = item.image || '/static/images/placeholder.jpg';
+            document.getElementById('edit-image-preview').style.display = 'block';
+            document.getElementById('edit-image-file-name').textContent = 'Current image';
+            
+            // Set price type and values
+            if (item.sizes || item.options) {
+                // Item has variations
+                document.getElementById('edit-price-variation').checked = true;
+                toggleEditPriceType();
+                
+                // Clear and populate variations
+                const variationsContainer = document.getElementById('edit-variations-container');
+                variationsContainer.innerHTML = '';
+                
+                const variations = item.sizes || item.options;
+                Object.entries(variations).forEach(([name, price]) => {
+                    const newRow = document.createElement('div');
+                    newRow.className = 'variation-row';
+                    newRow.innerHTML = `
+                        <input type="text" value="${name}" class="variation-name">
+                        <input type="number" value="${price}" step="0.01" class="variation-price">
+                        <button type="button" class="remove-variation-btn" onclick="removeEditVariation(this)">×</button>
+                    `;
+                    variationsContainer.appendChild(newRow);
+                });
+                
+                // Add one empty row if no variations exist
+                if (Object.keys(variations).length === 0) {
+                    addEditVariation();
+                }
+            } else {
+                // Single price item
+                document.getElementById('edit-price-single').checked = true;
+                toggleEditPriceType();
+                document.getElementById('edit-item-price').value = item.price || '';
+            }
+            
+            document.getElementById('editModal').style.display = 'block';
+        }
+
+        function closeEditModal() {
+            document.getElementById('editModal').style.display = 'none';
+            currentEditImageData = null;
+        }
+
+        async function deleteMenuItem(index) {
+            if (!confirm('Are you sure you want to delete this menu item?')) {
+                return;
+            }
+
+            try {
+                currentMenuItems.splice(index, 1);
+                await saveMenuItems(currentMenuItems);
+                renderMenuItems();
+                showNotification('Item deleted successfully!');
+            } catch (error) {
+                console.error('Error deleting item:', error);
+                showNotification('Error deleting item', 'error');
+            }
+        }
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            const addModal = document.getElementById('addModal');
+            const editModal = document.getElementById('editModal');
+            
+            if (event.target === addModal) {
+                closeAddModal();
+            }
+            if (event.target === editModal) {
+                closeEditModal();
+            }
+        }
+
+        // Close modals with escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeAddModal();
+                closeEditModal();
+            }
+        });
+    </script>
+</body>
+</html>

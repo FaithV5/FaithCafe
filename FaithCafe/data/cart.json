@@ -1,0 +1,34 @@
+{
+  "carts": [
+    {
+      "customer": "faith",
+      "items": [
+        {
+          "name": "Red Velvet Latte (Regular)",
+          "price": 39,
+          "quantity": 1
+        },
+        {
+          "name": "Chocolate Chip Cookie",
+          "price": 7,
+          "quantity": 3
+        }
+      ]
+    },
+    {
+      "customer": "christine",
+      "items": [
+        {
+          "name": "Strawberry (Regular)",
+          "price": 39,
+          "quantity": 1
+        },
+        {
+          "name": "Fries (Large)",
+          "price": 39,
+          "quantity": 1
+        }
+      ]
+    }
+  ]
+}
