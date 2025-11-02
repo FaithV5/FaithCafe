@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FaithCafe - Menu</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="/static/images/logo.png" alt="FaithCafe" class="logo-icon">
+                FaithCafe
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
+                    <li><a href="status.html">Delivery Status</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <button id="theme-toggle" class="theme-toggle">🌙</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1 class="page-title">Our Menu</h1>
+            
+            <!-- Menu categories will be loaded dynamically -->
+            <div id="menu-container">
+                <!-- Menu items will be loaded here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Size Selection + Modifiers Modal -->
+    <div id="sizeModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3 id="modal-item-name">Select Options</h3>
+            <div class="size-options" id="size-options">
+                <div class="size-option" data-size="Regular">
+                    <input type="radio" id="size-regular" name="size" value="regular" checked>
+                    <label for="size-regular">Regular - ₱<span id="regular-price">49</span></label>
+                </div>
+                <div class="size-option" data-size="Large">
+                    <input type="radio" id="size-large" name="size" value="large">
+                    <label for="size-large">Large - ₱<span id="large-price">59</span></label>
+                </div>
+            </div>
+
+            <!-- Modifiers (shown conditionally) -->
+            <div class="modifier-section" id="modifier-iced" style="display:none; margin-top: 12px;">
+                <label for="ice-level" style="display:block; margin-bottom:6px;">Ice Level</label>
+                <select id="ice-level" style="width:100%; padding:10px; border:1px solid var(--border-color); border-radius:6px;">
+                    <option value="normal" selected>Normal Ice</option>
+                    <option value="less">Less Ice</option>
+                    <option value="extra">Extra Ice</option>
+                </select>
+            </div>
+
+            <div class="modifier-section" id="modifier-milktea" style="display:none; margin-top: 12px;">
+                <label for="sinkers-type" style="display:block; margin-bottom:6px;">Sinkers</label>
+                <select id="sinkers-type" style="width:100%; padding:10px; border:1px solid var(--border-color); border-radius:6px;">
+                    <option value="black" selected>Black Pearls</option>
+                    <option value="white">White Pearls</option>
+                    <option value="nata">Nata de Coco</option>
+                    <option value="none">No Sinkers</option>
+                </select>
+            </div>
+
+            <div class="quantity-selector">
+                <label for="quantity">Quantity:</label>
+                <div class="quantity-controls">
+                    <button type="button" class="quantity-btn" onclick="decreaseQuantity()">-</button>
+                    <input type="number" id="quantity" value="1" min="1" max="10">
+                    <button type="button" class="quantity-btn" onclick="increaseQuantity()">+</button>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="addToCartWithSize()">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Burger Options Modal -->
+    <div id="burgerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Burger Options</h3>
+            <div class="burger-options">
+                <div class="burger-option">
+                    <input type="radio" id="burger-plain" name="burger-type" value="plain" checked>
+                    <label for="burger-plain">Plain Burger - ₱35</label>
+                </div>
+                <div class="burger-option">
+                    <input type="radio" id="burger-cheese" name="burger-type" value="cheese">
+                    <label for="burger-cheese">Burger with Cheese - ₱38</label>
+                </div>
+            </div>
+            <div class="quantity-selector">
+                <label for="burger-quantity">Quantity:</label>
+                <div class="quantity-controls">
+                    <button type="button" class="quantity-btn" onclick="decreaseBurgerQuantity()">-</button>
+                    <input type="number" id="burger-quantity" value="1" min="1" max="10">
+                    <button type="button" class="quantity-btn" onclick="increaseBurgerQuantity()">+</button>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn btn-secondary" onclick="closeBurgerModal()">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="addBurgerToCart()">Add to Cart</button>
+            </div>
+        </div>
+    </div>    
+
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2025 FaithCafe. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../static/js/script.js"></script>
+    <script>
+        let menuItems = [];
+        let currentItem = null;
+    let currentRegularPrice = 0;
+    let currentLargePrice = 0;
+    let currentCategoryKey = '';
+    let currentHasSizes = true;
+
+        // Load menu when page loads
+        document.addEventListener('DOMContentLoaded', async function() {
+            await loadMenuItems();
+            setupModalEventListeners();
+        });
+
+        async function loadMenuItems() {
+            try {
+                menuItems = await getMenuItems();
+                renderMenu();
+            } catch (error) {
+                console.error('Error loading menu:', error);
+                showNotification('Error loading menu', 'error');
+            }
+        }
+
+        function renderMenu() {
+            const container = document.getElementById('menu-container');
+            container.innerHTML = '';
+
+            // Group items by category
+            const categories = {
+                'hot-coffees': { title: 'Hot Coffees', items: [] },
+                'iced-coffees': { title: 'Iced Coffees', items: [] },
+                'milk-tea': { title: 'Milk Tea', items: [] },
+                'snacks': { title: 'Snacks', items: [] }
+            };
+
+            // Sort items into categories
+            menuItems.forEach(item => {
+                if (categories[item.category]) {
+                    categories[item.category].items.push(item);
+                }
+            });
+
+            // Render each category
+            Object.entries(categories).forEach(([categoryKey, category]) => {
+                if (category.items.length === 0) return;
+
+                const categorySection = document.createElement('section');
+                categorySection.className = 'menu-category';
+                categorySection.innerHTML = `
+                    <div class="category-header">
+                        <h2 class="category-title">${category.title}</h2>
+                    </div>
+                    <div class="menu-grid" id="grid-${categoryKey}">
+                        <!-- Items will be added here -->
+                    </div>
+                `;
+
+                container.appendChild(categorySection);
+
+                const grid = document.getElementById(`grid-${categoryKey}`);
+                category.items.forEach(item => {
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'menu-item';
+                    
+                    let priceHTML = `₱${item.price.toFixed(2)}`;
+                    if (item.sizes) {
+                        const sizes = Object.entries(item.sizes);
+                        priceHTML = sizes.map(([size, price]) => 
+                            `₱${price} (${size.charAt(0).toUpperCase() + size.slice(1)})`
+                        ).join(' • ');
+                    } else if (item.options) {
+                        const options = Object.entries(item.options);
+                        priceHTML = options.map(([option, price]) => 
+                            `₱${price} (${option})`
+                        ).join(' • ');
+                    }
+
+                    let buttonHTML = '';
+                    if (item.sizes) {
+                        buttonHTML = `<button class="btn add-to-cart" onclick="showSizeModal('${item.name}', ${item.sizes.regular || item.price}, ${item.sizes.large || item.price}, '${categoryKey}', true)">Add to Cart</button>`;
+                    } else if (categoryKey === 'iced-coffees' || categoryKey === 'milk-tea') {
+                        // Force modal for modifiers even if no sizes
+                        buttonHTML = `<button class="btn add-to-cart" onclick="showSizeModal('${item.name}', ${item.price}, null, '${categoryKey}', false)">Add to Cart</button>`;
+                    } else if (item.options) {
+                        buttonHTML = `<button class="btn add-to-cart" onclick="showBurgerModal()">Add to Cart</button>`;
+                    } else {
+                        buttonHTML = `<button class="btn add-to-cart" onclick="addToCart('${item.name}', ${item.price})">Add to Cart</button>`;
+                    }
+
+                    itemElement.innerHTML = `
+                        <div class="item-image">
+                            <img src="${item.image || '/static/images/placeholder.jpg'}" alt="${item.name}" onerror="this.src='/static/images/placeholder.jpg'">
+                        </div>
+                        <div class="item-details">
+                            <div class="item-name">${item.name}</div>
+                            <div class="item-price">${priceHTML}</div>
+                            ${buttonHTML}
+                        </div>
+                    `;
+                    
+                    grid.appendChild(itemElement);
+                });
+            });
+        }
+
+        // Modal functionality (keep your existing modal functions)
+        function showSizeModal(itemName, regularPrice, largePrice, categoryKey = '', hasSizes = true) {
+            currentItem = itemName;
+            currentRegularPrice = regularPrice;
+            currentLargePrice = largePrice;
+            currentCategoryKey = categoryKey || '';
+            currentHasSizes = !!hasSizes;
+            
+            document.getElementById('modal-item-name').textContent = itemName;
+            const sizeOptions = document.getElementById('size-options');
+            if (currentHasSizes) {
+                sizeOptions.style.display = 'block';
+                document.getElementById('regular-price').textContent = regularPrice;
+                document.getElementById('large-price').textContent = largePrice || '';
+                // Enable/disable large option if no large price
+                const sizeLarge = document.getElementById('size-large');
+                const sizeLargeLabel = sizeLarge && sizeLarge.parentElement.querySelector('label span#large-price');
+                if (!largePrice) {
+                    document.getElementById('size-large').disabled = true;
+                    document.getElementById('size-regular').checked = true;
+                } else {
+                    document.getElementById('size-large').disabled = false;
+                }
+            } else {
+                sizeOptions.style.display = 'none';
+            }
+
+            // Show modifiers based on category
+            document.getElementById('modifier-iced').style.display = (currentCategoryKey === 'iced-coffees') ? 'block' : 'none';
+            document.getElementById('modifier-milktea').style.display = (currentCategoryKey === 'milk-tea') ? 'block' : 'none';
+            
+            document.getElementById('quantity').value = 1;
+            
+            document.getElementById('sizeModal').style.display = 'block';
+        }
+
+        function showBurgerModal() {
+            document.getElementById('burgerModal').style.display = 'block';
+            document.getElementById('burger-quantity').value = 1;
+        }
+
+        function closeModal() {
+            document.getElementById('sizeModal').style.display = 'none';
+        }
+
+        // Close modals when clicking X button
+        document.querySelectorAll('.close-modal').forEach(closeBtn => {
+            closeBtn.addEventListener('click', function() {
+                document.getElementById('sizeModal').style.display = 'none';
+                document.getElementById('burgerModal').style.display = 'none';
+            });
+        });
+
+        function closeBurgerModal() {
+            document.getElementById('burgerModal').style.display = 'none';
+        }
+
+        function increaseQuantity() {
+            const quantityInput = document.getElementById('quantity');
+            if (quantityInput.value < 10) {
+                quantityInput.value = parseInt(quantityInput.value) + 1;
+            }
+        }
+
+        function decreaseQuantity() {
+            const quantityInput = document.getElementById('quantity');
+            if (quantityInput.value > 1) {
+                quantityInput.value = parseInt(quantityInput.value) - 1;
+            }
+        }
+
+        function increaseBurgerQuantity() {
+            const quantityInput = document.getElementById('burger-quantity');
+            if (quantityInput.value < 10) {
+                quantityInput.value = parseInt(quantityInput.value) + 1;
+            }
+        }
+
+        function decreaseBurgerQuantity() {
+            const quantityInput = document.getElementById('burger-quantity');
+            if (quantityInput.value > 1) {
+                quantityInput.value = parseInt(quantityInput.value) - 1;
+            }
+        }
+
+        function addToCartWithSize() {
+            const selectedSize = currentHasSizes ? document.querySelector('input[name=\"size\"]:checked').value : null;
+            const quantity = parseInt(document.getElementById('quantity').value);
+            const price = !currentHasSizes ? currentRegularPrice : (selectedSize === 'regular' ? currentRegularPrice : currentLargePrice);
+
+            // Build item display name with modifiers
+            let nameParts = [currentItem];
+            if (currentHasSizes && selectedSize) {
+                nameParts.push(`(${selectedSize.charAt(0).toUpperCase() + selectedSize.slice(1)})`);
+            }
+            // Modifiers
+            if (currentCategoryKey === 'iced-coffees') {
+                const ice = document.getElementById('ice-level').value; // normal|less|extra
+                if (ice === 'less') nameParts.push('[Less Ice]');
+                if (ice === 'extra') nameParts.push('[Extra Ice]');
+            } else if (currentCategoryKey === 'milk-tea') {
+                const sinker = document.getElementById('sinkers-type').value; // black|white|nata|none
+                if (sinker === 'none') nameParts.push('[No Sinkers]');
+                else if (sinker === 'white') nameParts.push('[White Pearls]');
+                else if (sinker === 'nata') nameParts.push('[Nata de Coco]');
+                else if (sinker === 'black') {
+                    // default, omit to keep names clean
+                }
+            }
+            const itemName = nameParts.join(' ');
+            
+            addToCart(itemName, price, quantity);
+            closeModal();
+        }
+
+        function addBurgerToCart() {
+            const selectedType = document.querySelector('input[name="burger-type"]:checked').value;
+            const quantity = parseInt(document.getElementById('burger-quantity').value);
+            const price = selectedType === 'plain' ? 35 : 38;
+            const itemName = selectedType === 'plain' ? 'Burger' : 'Burger with Cheese';
+            
+            addToCart(itemName, price, quantity);
+            closeBurgerModal();
+        }
+
+        function setupModalEventListeners() {
+            // Close modals when clicking outside
+            window.onclick = function(event) {
+                const sizeModal = document.getElementById('sizeModal');
+                const burgerModal = document.getElementById('burgerModal');
+                
+                if (event.target === sizeModal) {
+                    closeModal();
+                }
+                if (event.target === burgerModal) {
+                    closeBurgerModal();
+                }
+            }
+
+            // Close modals with escape key
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    closeModal();
+                    closeBurgerModal();
+                }
+            });
+        }
+    </script>
+</body>
+</html>
