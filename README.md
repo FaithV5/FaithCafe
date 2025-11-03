@@ -20,7 +20,7 @@
   - password: `staff123`
   - role: `staff`
 - Customers
-  - username: `Faith` / password: `peyt`
+  - username: `Faith` / password: `peyt1105`
   - username: `Christine` / password: `cresteen`
 - Riders (cannot login — no password field)
   - `Juan Dela Cruz`, `Maria Santos`, `Pedro Reyes` (role: `rider`)
