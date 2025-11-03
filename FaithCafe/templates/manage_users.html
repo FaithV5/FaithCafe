@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FaithCafe - Manage Users</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="icon" href="/static/images/logo1.png" type="image/png">
+    <link rel="apple-touch-icon" href="/static/images/logo1.png">
+    <link rel="shortcut icon" href="/static/images/logo1.png" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="/static/images/logo.png" alt="FaithCafe" class="logo-icon">
+                FaithCafe
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="adminmenu.html">Menu</a></li>
+                    <li><a href="manage_users.html">Manage Users</a></li>
+                </ul>
+            </nav>
+            <div id="auth-links" class="auth-links"></div>
+            <button id="theme-toggle" class="theme-toggle">🌙</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1 class="page-title">Manage Users</h1>
+            <section class="menu-category" style="margin-top:10px;">
+                <div id="admin-users-list"></div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2025 FaithCafe. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../static/js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async function() {
+            if (!isRole('admin')) {
+                showNotification('Access denied. Admin only page.');
+                setTimeout(() => window.location.href = '../index.html', 1200);
+                return;
+            }
+
+            await renderAdminUsers();
+        });
+
+        async function renderAdminUsers() {
+            const users = await loadUsers();
+            const container = document.getElementById('admin-users-list');
+            container.innerHTML = '';
+            
+            if (users.length === 0) {
+                container.innerHTML = '<p>No users found.</p>';
+                return;
+            }
+            
+            users.forEach((user, idx) => {
+                const el = document.createElement('div');
+                el.className = 'order-history-card';
+                el.innerHTML = `
+                    <div style="display:flex;justify-content:space-between;align-items:center;">
+                        <div>
+                            <div><strong>${user.username}</strong> (${user.email})</div>
+                            <div style="margin-top:6px; display:flex; align-items:center; gap:8px;">
+                                <label for="role-${idx}" style="font-weight:600;">Role:</label>
+                                <select id="role-${idx}" data-username="${user.username}" class="role-select" style="padding:8px 10px;border:1px solid var(--border-color);border-radius:6px;">
+                                    <option value="customer" ${(!user.role || user.role==='customer') ? 'selected' : ''}>Customer</option>
+                                    <option value="staff" ${(user.role==='staff') ? 'selected' : ''}>Staff</option>
+                                    <option value="rider" ${(user.role==='rider') ? 'selected' : ''}>Rider</option>
+                                    <option value="admin" ${(user.role==='admin') ? 'selected' : ''}>Admin</option>
+                                </select>
+                                <button class="btn btn-secondary" onclick="updateUserRole('${user.username}', 'role-${idx}')">Update</button>
+                            </div>
+                            <div>Address: ${user.address || 'Not provided'}</div>
+                            <div>Contact: ${user.contactNumber || 'Not provided'}</div>
+                        </div>
+                        <div>
+                            <button class="btn" onclick="deleteUser(${idx})" style="background-color: #dc3545;">Delete</button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(el);
+            });
+        }
+
+        async function deleteUser(idx) {
+            if (!confirm('Are you sure you want to delete this user?')) return;
+            
+            try {
+                const users = await loadUsers();
+                users.splice(idx, 1);
+                await saveUsers(users);
+                await renderAdminUsers();
+                showNotification('User deleted successfully', 'success');
+            } catch (error) {
+                console.error('Error deleting user:', error);
+                showNotification('Error deleting user', 'error');
+            }
+        }
+
+        async function updateUserRole(username, selectId) {
+            try {
+                const select = document.getElementById(selectId);
+                if (!select) return;
+                const newRole = select.value;
+                const users = await loadUsers();
+                const idx = users.findIndex(u => u.username === username);
+                if (idx === -1) {
+                    showNotification('User not found', 'error');
+                    return;
+                }
+                // Update role
+                users[idx].role = newRole;
+                await saveUsers(users);
+                await renderAdminUsers();
+                showNotification(`Updated ${username}'s role to ${newRole}`, 'success');
+            } catch (error) {
+                console.error('Error updating user role:', error);
+                showNotification('Error updating role', 'error');
+            }
+        }
+    </script>
+</body>
+</html>
