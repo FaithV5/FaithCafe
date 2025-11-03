@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FaithCafe - Delivery Status</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="icon" href="/static/images/logo1.png" type="image/png">
+    <link rel="apple-touch-icon" href="/static/images/logo1.png">
+    <link rel="shortcut icon" href="/static/images/logo1.png" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="/static/images/logo.png" alt="FaithCafe" class="logo-icon">
+                FaithCafe
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
+                    <li><a href="status.html">Delivery Status</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <button id="theme-toggle" class="theme-toggle">🌙</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1 class="page-title">Your Delivery Status</h1>
+            
+            <!-- Order Tracking Section -->
+            <div class="tracking-section">
+                <div class="tracking-card">
+                    <div class="tracking-header">
+                        <h3>Current Order</h3>
+                        <div class="order-number">Order #<span id="current-order-number">FC2025001</span></div>
+                    </div>
+                    
+                    <!-- Progress Steps -->
+                    <div class="progress-steps">
+                        <div class="step active">
+                            <div class="step-icon">📦</div>
+                            <div class="step-label">Order Placed</div>
+                            <div class="step-time" id="step1-time">Just now</div>
+                        </div>
+                        <div class="step" id="step-preparing">
+                            <div class="step-icon">👨‍🍳</div>
+                            <div class="step-label">Preparing</div>
+                            <div class="step-time" id="step2-time">-</div>
+                        </div>
+                        <div class="step" id="step-ready">
+                            <div class="step-icon">✅</div>
+                            <div class="step-label">Ready for Pickup</div>
+                            <div class="step-time" id="step3-time">-</div>
+                        </div>
+                        <div class="step" id="step-pickedup">
+                            <div class="step-icon">🚗</div>
+                            <div class="step-label">Picked Up</div>
+                            <div class="step-time" id="step4-time">-</div>
+                        </div>
+                        <div class="step" id="step-delivered">
+                            <div class="step-icon">🎉</div>
+                            <div class="step-label">Delivered</div>
+                            <div class="step-time" id="step5-time">-</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Order Details -->
+                    <div class="order-details">
+                        <h4>Order Details</h4>
+                        <div id="order-items-list">
+                            <!-- Items will be populated by JavaScript -->
+                        </div>
+                        <div class="order-total">
+                            <strong>Total: ₱<span id="order-total-amount">0.00</span></strong>
+                        </div>
+                        <div id="order-actions" class="order-actions">
+                            <!-- View Receipt button inserted by JS -->
+                        </div>
+                    </div>
+                    
+                    <!-- Estimated Time -->
+                    <div class="eta-section">
+                        <div class="eta-card">
+                            <div class="eta-icon">⏰</div>
+                            <div class="eta-info">
+                                <div class="eta-label">Estimated Delivery Time</div>
+                                <div class="eta-time" id="eta-time">15-20 minutes</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Delivery Info -->
+                    <div class="delivery-info">
+                        <h4>Delivery Information</h4>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="info-label">Delivery Address:</span>
+                                <span id="delivery-address">Loading...</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Contact Number:</span>
+                                <span id="contact-number">Loading...</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Rider:</span>
+                                <span id="rider-name">Assigning rider...</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Rider Contact:</span>
+                                <span id="rider-contact">-</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Payment Method:</span>
+                                <span id="payment-method">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Order History -->
+            <div class="order-history">
+                <h2>Order History</h2>
+                <div id="order-history-list">
+                    <!-- Previous orders will be populated here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2025 FaithCafe. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../static/js/script.js"></script>
+    <script src="../static/js/status.js"></script>
+</body>
+</html>
