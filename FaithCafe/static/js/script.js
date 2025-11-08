@@ -1324,8 +1324,19 @@ document.addEventListener('DOMContentLoaded', function() {
         passwordInputs.forEach((input) => {
             if (input.dataset.toggleAttached === 'true') return;
 
-            const wrapper = input.closest('.form-group') || input.parentElement;
-            if (wrapper) wrapper.classList.add('password-field');
+            let fieldWrapper = input.closest('.password-field');
+
+            if (!fieldWrapper) {
+                // Create an inline wrapper and move the input inside it
+                const parent = input.parentElement;
+                const wrapper = document.createElement('div');
+                wrapper.className = 'password-field';
+                // Insert wrapper just before the input, then move the input into it
+                parent.insertBefore(wrapper, input);
+                wrapper.appendChild(input);
+                fieldWrapper = wrapper;
+            }
+
             input.classList.add('password-input');
 
             const btn = document.createElement('button');
@@ -1349,4 +1360,5 @@ document.addEventListener('DOMContentLoaded', function() {
             input.dataset.toggleAttached = 'true';
         });
     })();
+
 });
