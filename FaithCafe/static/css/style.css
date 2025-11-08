@@ -557,7 +557,7 @@ main {
 .toggle-password-btn {
   position: absolute;
   right: 10px;
-  top: calc(60% + 8px); /* lowered to sit visually at the middle */
+  top: 50%;
   transform: translateY(-50%);
   background: transparent;
   border: none;
@@ -2217,4 +2217,5 @@ footer {
     .form-row {
         grid-template-columns: 1fr;
     }
+
 }
