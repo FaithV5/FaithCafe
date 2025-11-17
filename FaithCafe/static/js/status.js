@@ -328,12 +328,17 @@ class DeliveryTracker {
             }
 
             showNotification('Order status updated to Delivered', 'success');
-
-            // Refresh UI
+            // Immediately clear current order from the customer's active view
+            this.currentOrder = null;
+            // Refresh orders and show no-active-orders UI for the customer
             await this.loadOrders();
-            this.loadCurrentOrder();
+            this.showNoOrdersMessage();
             this.displayOrderHistory();
-            this.displayCurrentOrder();
+
+            // Broadcast a lightweight signal so other tabs (staff) can reload immediately
+            try {
+                localStorage.setItem('faithcafe_orders_update', JSON.stringify({ id: this.currentOrder ? this.currentOrder.id : null, ts: Date.now() }));
+            } catch (e) { /* ignore storage errors */ }
         } catch (error) {
             console.error('Error confirming delivery:', error);
             alert('Failed to confirm delivery. Please try again.');
@@ -484,4 +489,5 @@ class DeliveryTracker {
 // Initialize delivery tracker when page loads
 document.addEventListener('DOMContentLoaded', function() {
     new DeliveryTracker();
+
 });
