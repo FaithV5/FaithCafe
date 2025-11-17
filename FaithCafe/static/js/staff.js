@@ -313,6 +313,15 @@ class StaffOrderManager {
         setInterval(() => {
             this.loadOrders().then(() => this.displayOrders());
         }, 30000);
+
+        // Listen for cross-tab order updates (broadcast via localStorage)
+        window.addEventListener('storage', (e) => {
+            if (!e.key) return;
+            if (e.key === 'faithcafe_orders_update') {
+                console.log('Staff view received orders update via storage event, reloading');
+                this.loadOrders().then(() => this.displayOrders());
+            }
+        });
     }
 }
 
@@ -350,4 +359,5 @@ async function viewOrderReceipt(orderId) {
         console.error('Failed to open receipt:', error);
         showNotification('Failed to open receipt', 'error');
     }
+
 }
