@@ -33,33 +33,7 @@
       ,
       "paymentMethod": "cash",
       "total": 139
-    },
-    {
-      "id": "FC002",
-      "customer": "faith",
-      "items": [
-        {
-          "name": "Iced Coffee (Large)",
-          "price": 59,
-          "quantity": 1
-        },
-        {
-          "name": "Garlic Bread",
-          "price": 50,
-          "quantity": 1
-        }
-      ],
-      "subtotal": 109,
-      "shippingFee": 30,
-      "status": "preparing",
-      "orderTime": "2024-01-16T14:20:00Z",
-      "placedTime": "2024-01-16T14:20:00Z",
-      "preparingTime": "2024-01-16T14:25:00Z",
-      "deliveryAddress": "San Pedro, Bauan, Batangas",
-      "contactNumber": "09938564676"
-      ,
-      "paymentMethod": "cash",
-      "total": 139
     }
   ]
+
 }
